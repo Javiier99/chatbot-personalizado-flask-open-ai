@@ -1,0 +1,1 @@
+Guardar todas las imagenes que subamos a la IA
