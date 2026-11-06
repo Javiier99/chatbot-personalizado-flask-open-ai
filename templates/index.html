@@ -1,21 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Segundo Cerebro</title>
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <h1>Hola</h1>
-    <h2>Lo que sea</h2>
 
-    <form action="" method="POST">
-        <input type="text" name="accion-usuario">
+    <main class="main main-section-center main-section-height__activado">
 
-        <button type="submit">Enviar</button>
-    </form>
+        <div class="main-div1 hidden">
+            <p>Aquí va el texto de la IA</p>
+        </div>
+        
+    
+        <div class="main-div2">
+            <h1 class="main-div2--h1">Segundo Cerebro</h1>
+            <div class="main-div2-div">
+                <p class="main-div2-div--p"></p> <!--Aquí al pasar en el label del más aparecerá esto-->
+            </div>
+            
+            <form action="" method="POST" class="main-div2-form">
+                
+                <label class="main-div2-form-label" for="imagePdfInput" class="main-div2-label1">+</label>
+                <input type="file" id="imagePdfInput" accept="image/*,.pdf, audio/*" multiple class="hidden" name="file">
+
+                <input name="prompt" id="" class="main-div2-form--textarea">
+
+                <select name="ia-escogida" class="main-div2-form--select">
+                    <option value="qwen"> Qwen2.5 Coder</option>
+                    <option value="gemma"> Gemma-4 </option>
+                </select>
+
+                <button type="submit" class="main-div2-form--button">Enviar</button>
+            </form>
+            <p class="main-div2--p">Actualmente no guarda los datos y no sigue una conversación</p>
+        </div>
+
+    </main>
 
 
 
+    <script src="../static/js/main.js"></script>
 </body>
 </html>
