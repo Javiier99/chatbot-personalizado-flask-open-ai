@@ -1,4 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
+from ia import obtener_respuesta
 
 app = Flask(__name__)
 
@@ -16,22 +17,18 @@ def inicio():
         accion_usuario = request.form['ia-escogida']
         match(accion_usuario):
             case "qwen":
-                datos = request.form['ia-escogida']
                 ia_escogida = "qwen2.5-coder-7b-instruct"
             case "gemma":
-                datos = request.form['ia-escogida']
                 ia_escogida = "google/gemma-4-e4b"
+            case "openai":
+                ia_escogida = "open_ai"
+        file = request.form['files'], ""
+        print(file)
+            
+        reply_ia = obtener_respuesta(promt, ia_escogida)
+        print(reply_ia)
+        return jsonify({"respuesta_ia" : reply_ia})
 
-        # file = request.form['file'], ""
-        # print(file)
-        # if(file):
-        #     print(f"Archivo recibido {file}")
-        
-        print(f"Este es el promt {promt}")
-        print(datos)
-        print(ia_escogida)
-
-    
     return render_template("index.html")
 
 

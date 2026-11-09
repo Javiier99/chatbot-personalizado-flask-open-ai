@@ -3,6 +3,7 @@
 const formulario = document.querySelector(".main-div2-form");
 
 
+
 formulario.addEventListener("submit", async (e)=>{
     e.preventDefault();
 
@@ -23,24 +24,29 @@ formulario.addEventListener("submit", async (e)=>{
     }
     const textPromt = document.querySelector(".main-div2-form--textarea")
     const iaEscogida = document.querySelector(".main-div2-form--select");
+    const filesEscogido =  document.getElementById("imagePdfInput");
     const formData = new FormData();
     formData.append('prompt', textPromt.value);
     formData.append('ia-escogida', iaEscogida.value);
+    formData.append('files', filesEscogido.value);
     try{
+
         const response = await fetch('/', {
             method: 'POST',
             body: formData
         });
+        textPromt.value = ""; 
+        textPromt.textContent = "";
+        filesEscogido.value = "";
 
         if(!response.ok){
             throw new Error("Error al comunicarse con la IA");
         }
 
         const data = await response.json();
+        const textoIAHTNL = document.querySelector(".main-div1--p");
+        textoIAHTNL.innerHTML = DOMPurify.sanitize(marked.parse(data['respuesta_ia']));
 
-        agregarMensajeIa('IA', data.respuesta);
-        textPromt.value = ""; 
-        textPromt.textContent = "";
     }catch(error){
         console.error(`Hubo error ${error}`);
     }
@@ -48,6 +54,8 @@ formulario.addEventListener("submit", async (e)=>{
 
 
 })
+
+
 
 const efectHoverP = document.querySelector(".main-div2-form-label");
 const efectoHoverPSelect = document.querySelector(".main-div2-div--p");

@@ -11,7 +11,7 @@
     <main class="main main-section-center main-section-height__activado">
 
         <div class="main-div1 hidden">
-            <p>Aquí va el texto de la IA</p>
+            <p class="main-div1--p">Pensando...</p>
         </div>
         
     
@@ -24,11 +24,12 @@
             <form action="" method="POST" class="main-div2-form">
                 
                 <label class="main-div2-form-label" for="imagePdfInput" class="main-div2-label1">+</label>
-                <input type="file" id="imagePdfInput" accept="image/*,.pdf, audio/*" multiple class="hidden" name="file">
+                <input type="file" id="imagePdfInput" accept="image/*,.pdf, audio/*" multiple class="hidden" name="files">
 
                 <input name="prompt" id="" class="main-div2-form--textarea">
 
                 <select name="ia-escogida" class="main-div2-form--select">
+                    <option value="openai"> Open AI </option>
                     <option value="qwen"> Qwen2.5 Coder</option>
                     <option value="gemma"> Gemma-4 </option>
                 </select>
@@ -41,7 +42,8 @@
     </main>
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
     <script src="../static/js/main.js"></script>
 </body>
 </html>
