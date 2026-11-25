@@ -10,10 +10,11 @@ formulario.addEventListener("submit", async (e)=>{
     const textoAI = document.querySelector(".main-div1");
     const textoH1 = document.querySelector(".main-div2--h1");
     const main =  document.querySelector(".main");
-
+    const textoIAHTNL = document.querySelector(".main-div1--p");
     main.classList.add("main-section-end");
     main.classList.remove("main-section-center");
 
+    textoIAHTNL.textContent = "Pensando...";
 
     if(textoAI.classList.contains("hidden")){
         textoAI.classList.remove("hidden");
@@ -28,7 +29,9 @@ formulario.addEventListener("submit", async (e)=>{
     const formData = new FormData();
     formData.append('prompt', textPromt.value);
     formData.append('ia-escogida', iaEscogida.value);
-    formData.append('files', filesEscogido.value);
+    for (const archivo of filesEscogido.files) {
+        formData.append('files', archivo);
+    }
     try{
 
         const response = await fetch('/', {
@@ -44,7 +47,7 @@ formulario.addEventListener("submit", async (e)=>{
         }
 
         const data = await response.json();
-        const textoIAHTNL = document.querySelector(".main-div1--p");
+        
         textoIAHTNL.innerHTML = DOMPurify.sanitize(marked.parse(data['respuesta_ia']));
 
     }catch(error){

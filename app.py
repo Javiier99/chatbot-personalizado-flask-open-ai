@@ -22,10 +22,10 @@ def inicio():
                 ia_escogida = "google/gemma-4-e4b"
             case "openai":
                 ia_escogida = "open_ai"
-        file = request.form['files'], ""
-        print(file)
+        file = request.files.getlist('files')
+        print([a.filename for a in file])
             
-        reply_ia = obtener_respuesta(promt, ia_escogida)
+        reply_ia = obtener_respuesta(promt, ia_escogida, file)
         print(reply_ia)
         return jsonify({"respuesta_ia" : reply_ia})
 
