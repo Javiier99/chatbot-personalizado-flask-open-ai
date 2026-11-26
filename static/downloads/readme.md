@@ -1,1 +1,1 @@
-Guardar tolas las imagenes que se descargan desde una URL
+Guardar todas las imagenes que se descargan desde una URL

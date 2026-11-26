@@ -1,8 +1,9 @@
 
 
 const formulario = document.querySelector(".main-div2-form");
-
-
+const inputArchivo = document.querySelector(".main-div2-form-label-input");
+const textoArchivoSubido = document.querySelector(".main-div2-div-archivoSubido");
+const borrarArchivoSubido = document.querySelector(".main-div2-div-borrar");
 
 formulario.addEventListener("submit", async (e)=>{
     e.preventDefault();
@@ -15,7 +16,7 @@ formulario.addEventListener("submit", async (e)=>{
     main.classList.remove("main-section-center");
 
     textoIAHTNL.textContent = "Pensando...";
-
+    textoArchivoSubido.textContent = "";
     if(textoAI.classList.contains("hidden")){
         textoAI.classList.remove("hidden");
     }
@@ -27,6 +28,7 @@ formulario.addEventListener("submit", async (e)=>{
     const iaEscogida = document.querySelector(".main-div2-form--select");
     const filesEscogido =  document.getElementById("imagePdfInput");
     const formData = new FormData();
+    borrarArchivoSubido.textContent = "";
     formData.append('prompt', textPromt.value);
     formData.append('ia-escogida', iaEscogida.value);
     for (const archivo of filesEscogido.files) {
@@ -47,6 +49,7 @@ formulario.addEventListener("submit", async (e)=>{
         }
 
         const data = await response.json();
+        textoArchivoSubido.textContent = "";
         
         textoIAHTNL.innerHTML = DOMPurify.sanitize(marked.parse(data['respuesta_ia']));
 
@@ -74,3 +77,32 @@ efectHoverP.addEventListener("mouseenter", ()=>{
 efectHoverP.addEventListener("mouseleave", ()=>{
     efectoHoverPSelect.textContent = "";
 })
+
+
+
+
+
+inputArchivo.addEventListener("change", ()=>{
+    console.log()
+    console.log(inputArchivo.files)
+    console.log(inputArchivo.files.length)
+    if(inputArchivo.files.length > 0){
+        textoArchivoSubido.textContent = `Se ha subido este archivo: ${inputArchivo.files[0]['name']}`;
+        borrarArchivoSubido.textContent = "Borrar Arhivo";
+    }else{
+        textoArchivoSubido.textContent = "";
+
+    }
+})
+
+
+borrarArchivoSubido.addEventListener("click", ()=>{
+    console.log()
+    console.log(inputArchivo.files)
+    console.log(inputArchivo.files.length)
+    inputArchivo.value = "";
+    borrarArchivoSubido.textContent = "";
+    textoArchivoSubido.textContent = "";
+})
+
+

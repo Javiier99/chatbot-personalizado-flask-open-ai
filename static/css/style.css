@@ -107,8 +107,14 @@ p{
 
 .main-div2-div--p{
     position: absolute;
-    bottom: -70px;
+    bottom: -30px;
     color: var(--color-texto-principal);
+    text-align: start !important;
+}
+
+.main-div2-div{
+    display: flex;
+    flex-direction: column;
 }
 
 .main-div2-form--textarea{
@@ -165,7 +171,19 @@ p{
 }
 
 
+.main-div2-div-archivoSubido{
+    color: var(--color-texto-principal);
+    padding-bottom: 1rem;
+}
 
+.main-div2-div-borrar{
+    color: red;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+.main-div2-div-borrar:hover{
+    text-decoration: underline;
+}
 
 
 
